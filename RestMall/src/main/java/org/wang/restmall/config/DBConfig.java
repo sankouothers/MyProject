@@ -1,24 +1,39 @@
 package org.wang.restmall.config;
 
+import javax.annotation.Resource;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Qualifier;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+
 import org.springframework.core.env.Environment;
+
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.annotation.Resource;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.sql.DataSource;
 
+/**
+ * DOCUMENT ME!
+ *
+ * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
+ * @version  $Revision$, $Date$
+ */
 @ComponentScan("org.wang.restmall.model")
 @Configuration
 @EnableJpaRepositories("org.wang.restmall.repository")
@@ -27,8 +42,8 @@ import javax.sql.DataSource;
 public class DBConfig {
   //~ Static fields/initializers ---------------------------------------------------------------------------------------
 
-  private static final String DATABASE_DRIVER = "spring.datasource.driver-class-name";
-  private static final String DATABASE_URL = "spring.datasource.url";
+  private static final String DATABASE_DRIVER   = "spring.datasource.driver-class-name";
+  private static final String DATABASE_URL      = "spring.datasource.url";
   private static final String DATABASE_USERNAME = "spring.datasource.username";
   private static final String DATABASE_PASSWORD = "spring.datasource.password";
 
@@ -38,8 +53,7 @@ public class DBConfig {
 
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  @Resource
-  private Environment env;
+  @Resource private Environment env;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -48,10 +62,9 @@ public class DBConfig {
   /**
    * dataSource.
    *
-   * @return DataSource
+   * @return  DataSource
    */
-  @Bean
-  public DataSource dataSource() {
+  @Bean public DataSource dataSource() {
     DriverManagerDataSource dataSource = new DriverManagerDataSource();
 
     dataSource.setDriverClassName(env.getProperty(DATABASE_DRIVER));
@@ -67,8 +80,9 @@ public class DBConfig {
   /**
    * entityManager.
    *
-   * @param entityManagerFactory EntityManagerFactory
-   * @return EntityManager
+   * @param   entityManagerFactory  EntityManagerFactory
+   *
+   * @return  EntityManager
    */
   @Bean
   @Qualifier(value = "entityManager")
@@ -81,7 +95,7 @@ public class DBConfig {
   /**
    * entityManagerFactory.
    *
-   * @return LocalContainerEntityManagerFactoryBean
+   * @return  LocalContainerEntityManagerFactoryBean
    */
   @Bean(name = "entityManagerFactory")
   public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
@@ -99,10 +113,9 @@ public class DBConfig {
   /**
    * hibernateJpaVendorAdapter.
    *
-   * @return HibernateJpaVendorAdapter
+   * @return  HibernateJpaVendorAdapter
    */
-  @Bean
-  public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
+  @Bean public HibernateJpaVendorAdapter hibernateJpaVendorAdapter() {
     HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
 
     vendorAdapter.setGenerateDdl(Boolean.TRUE);
@@ -117,11 +130,11 @@ public class DBConfig {
   /**
    * transactionManager.
    *
-   * @param factory EntityManagerFactory
-   * @return PlatformTransactionManager
+   * @param   factory  EntityManagerFactory
+   *
+   * @return  PlatformTransactionManager
    */
-  @Bean
-  public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
+  @Bean public PlatformTransactionManager transactionManager(EntityManagerFactory factory) {
     return new JpaTransactionManager(factory);
   }
-}
+} // end class DBConfig
