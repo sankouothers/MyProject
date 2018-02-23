@@ -16,7 +16,7 @@ import javax.persistence.Id;
 @Entity public class User {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Id private Long id;
 
   @Column(
