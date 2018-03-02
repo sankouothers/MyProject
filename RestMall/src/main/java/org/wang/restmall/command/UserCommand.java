@@ -100,4 +100,20 @@ public class UserCommand {
     this.password = password;
   }
 
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   userCommand  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public User toUser(UserCommand userCommand) {
+    User user = new User();
+    user.setName(userCommand.getName());
+    user.setPassWord(userCommand.getPassword());
+
+    return user;
+  }
 } // end class UserCommand

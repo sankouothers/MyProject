@@ -1,5 +1,7 @@
 package org.wang.restmall.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +26,15 @@ import org.wang.restmall.repository.UserRepository;
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.restmall.service.UserService#findAll()
+   */
+  @Override public List<User> findAll() {
+    return (List<User>) userRepository.findAll();
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  UserService#findByName(String)
    */
   @Override public User findByName(String name) {
@@ -39,4 +50,9 @@ import org.wang.restmall.repository.UserRepository;
     return userRepository.findOne(id);
   }
 
-}
+  @Override
+  public User saveUser(User user) {
+    return userRepository.save(user);
+  }
+
+} // end class UserServiceImpl

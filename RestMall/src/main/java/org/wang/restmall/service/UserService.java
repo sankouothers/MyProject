@@ -1,5 +1,7 @@
 package org.wang.restmall.service;
 
+import java.util.List;
+
 import org.wang.restmall.model.User;
 
 
@@ -11,6 +13,15 @@ import org.wang.restmall.model.User;
  */
 public interface UserService {
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  List<User> findAll();
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * DOCUMENT ME!
@@ -31,4 +42,6 @@ public interface UserService {
    * @return  DOCUMENT ME!
    */
   User findOne(Long id);
-}
+
+  User saveUser(User user);
+} // end interface UserService
