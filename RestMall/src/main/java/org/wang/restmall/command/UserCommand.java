@@ -2,6 +2,9 @@ package org.wang.restmall.command;
 
 import org.wang.restmall.model.User;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 
 /**
  * DOCUMENT ME!
@@ -9,12 +12,19 @@ import org.wang.restmall.model.User;
  * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
  * @version  $Revision$, $Date$
  */
+@ApiModel(
+  value       = "User",
+  description = "用户对象"
+)
 public class UserCommand {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
+  @ApiModelProperty(value = "ID")
   private Long   id;
+  @ApiModelProperty(value = "用户名")
   private String name;
-  private String password;
+  @ApiModelProperty(value = "密码")
+  private String passWord;
 
   //~ Constructors -----------------------------------------------------------------------------------------------------
 
@@ -31,7 +41,7 @@ public class UserCommand {
   public UserCommand(User user) {
     this.id       = user.getId();
     this.name     = user.getName();
-    this.password = user.getPassWord();
+    this.passWord = user.getPassWord();
   }
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
@@ -63,8 +73,8 @@ public class UserCommand {
    *
    * @return  DOCUMENT ME!
    */
-  public String getPassword() {
-    return password;
+  public String getPassWord() {
+    return passWord;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -94,10 +104,10 @@ public class UserCommand {
   /**
    * DOCUMENT ME!
    *
-   * @param  password  DOCUMENT ME!
+   * @param  passWord  DOCUMENT ME!
    */
-  public void setPassword(String password) {
-    this.password = password;
+  public void setPassWord(String passWord) {
+    this.passWord = passWord;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -112,7 +122,7 @@ public class UserCommand {
   public User toUser(UserCommand userCommand) {
     User user = new User();
     user.setName(userCommand.getName());
-    user.setPassWord(userCommand.getPassword());
+    user.setPassWord(userCommand.getPassWord());
 
     return user;
   }

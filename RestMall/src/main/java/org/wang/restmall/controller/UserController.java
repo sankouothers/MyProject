@@ -42,6 +42,40 @@ import io.swagger.annotations.ApiParam;
   /**
    * DOCUMENT ME!
    *
+   * @param   userCommand  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @ApiOperation(
+    value = "创建一个新的 User",
+    notes = " 根据表单内容创建一个新的 User"
+  )
+  @RequestMapping(
+    value  = "/user",
+    method = RequestMethod.POST
+  )
+// @ApiImplicitParams({
+// @ApiImplicitParam(paramType = "form",name = "name", value = "姓名", required = true),
+// @ApiImplicitParam(paramType = "form",name = "passWord", value = "passWord", required = true),
+////      @ApiImplicitParam(paramType = "body", dataType = "UserCommand", name = "userCommand", value = "用户信息", required = true)
+//
+// })
+  public ResponseEntity createUser(UserCommand userCommand) {
+    if (userCommand != null) {
+      User user = userCommand.toUser(userCommand);
+      userService.saveUser(user);
+
+      return new ResponseEntity(HttpStatus.OK);
+    }
+
+    return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @param   request  DOCUMENT ME!
    * @param   id       DOCUMENT ME!
    *
