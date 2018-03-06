@@ -26,6 +26,15 @@ import org.wang.restmall.repository.UserRepository;
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.restmall.service.UserService#delete(org.wang.restmall.model.User)
+   */
+  @Override public void delete(User user) {
+    userRepository.delete(user);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.restmall.service.UserService#findAll()
    */
   @Override public List<User> findAll() {

@@ -73,6 +73,38 @@ import io.swagger.annotations.ApiParam;
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   id  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @ApiOperation(
+    value = "删除用户",
+    notes = "删除用户"
+  )
+  @RequestMapping(
+    value  = "/user/{id}",
+    method = RequestMethod.DELETE
+  )
+  public ResponseEntity deleteUser(@ApiParam(
+      value    = "用户Id",
+      required = true
+    )
+    @PathVariable Long id) {
+    User user = userService.findOne(id);
+
+    if (user != null) {
+      userService.delete(user);
+
+      return new ResponseEntity(HttpStatus.OK);
+    }
+
+    return new ResponseEntity(HttpStatus.FAILED_DEPENDENCY);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * DOCUMENT ME!

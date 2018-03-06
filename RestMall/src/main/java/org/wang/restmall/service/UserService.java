@@ -17,6 +17,15 @@ public interface UserService {
   /**
    * DOCUMENT ME!
    *
+   * @param  user  DOCUMENT ME!
+   */
+  void delete(User user);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @return  DOCUMENT ME!
    */
   List<User> findAll();
