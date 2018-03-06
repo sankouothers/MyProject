@@ -62,10 +62,40 @@ import io.swagger.annotations.ApiParam;
 // })
   public ResponseEntity createUser(UserCommand userCommand) {
     if (userCommand != null) {
-      User user = userCommand.toUser(userCommand);
+      User user = userCommand.toUser();
       userService.saveUser(user);
 
       return new ResponseEntity(HttpStatus.OK);
+    }
+
+    return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   userCommand  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @ApiOperation(
+    value = "修改 User信息",
+    notes = "根据表单内容修改 User 的信息"
+  )
+  @RequestMapping(
+    value  = "/user",
+    method = RequestMethod.PATCH
+  )
+  public ResponseEntity updateUser(UserCommand userCommand) {
+    if (userCommand != null) {
+      User user = userCommand.toUser();
+
+      userService.saveUser(user);
+
+      return new ResponseEntity<UserCommand>(new UserCommand(user), HttpStatus.OK);
     }
 
     return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);

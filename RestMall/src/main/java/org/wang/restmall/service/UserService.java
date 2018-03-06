@@ -43,5 +43,14 @@ public interface UserService {
    */
   User findOne(Long id);
 
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   user  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
   User saveUser(User user);
 } // end interface UserService
