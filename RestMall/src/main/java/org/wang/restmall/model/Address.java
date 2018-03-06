@@ -1,18 +1,12 @@
 package org.wang.restmall.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import javax.persistence.ManyToOne;
 
 
 /**
@@ -21,43 +15,21 @@ import org.hibernate.annotations.CascadeType;
  * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
  * @version  $Revision$, $Date$
  */
-@Entity public class User {
+@Entity public class Address {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  @Cascade({ CascadeType.SAVE_UPDATE })
-  @JoinTable(
-    name               = "UserAddress",
-    joinColumns        = {
-      @JoinColumn(
-        name           = "userId",
-        nullable       = false,
-        updatable      = false
-      )
-    },
-    inverseJoinColumns = {
-      @JoinColumn(
-        name           = "addressId",
-        nullable       = false,
-        updatable      = false
-      )
-    }
-  )
-  @OneToMany private Set<Address> addressSet;
-
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Id private Long id;
-
   @Column(
-    length   = 12,
+    length   = 50,
     nullable = false
   )
-  private String name;
+  private String address;
 
-  @Column(
-    length   = 16,
-    nullable = false
-  )
-  private String passWord;
+  @JoinColumn(name = "consumerId")
+  @ManyToOne private User consumer;
+
+  @Column private Boolean defaultAddress;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id private Long        id;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -66,8 +38,30 @@ import org.hibernate.annotations.CascadeType;
    *
    * @return  DOCUMENT ME!
    */
-  public Set<Address> getAddressSet() {
-    return addressSet;
+  public String getAddress() {
+    return address;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public User getConsumer() {
+    return consumer;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public Boolean getDefaultAddress() {
+    return defaultAddress;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -86,10 +80,10 @@ import org.hibernate.annotations.CascadeType;
   /**
    * DOCUMENT ME!
    *
-   * @return  DOCUMENT ME!
+   * @param  address  DOCUMENT ME!
    */
-  public String getName() {
-    return name;
+  public void setAddress(String address) {
+    this.address = address;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -97,10 +91,10 @@ import org.hibernate.annotations.CascadeType;
   /**
    * DOCUMENT ME!
    *
-   * @return  DOCUMENT ME!
+   * @param  consumer  DOCUMENT ME!
    */
-  public String getPassWord() {
-    return passWord;
+  public void setConsumer(User consumer) {
+    this.consumer = consumer;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -108,10 +102,10 @@ import org.hibernate.annotations.CascadeType;
   /**
    * DOCUMENT ME!
    *
-   * @param  addressSet  DOCUMENT ME!
+   * @param  defaultAddress  DOCUMENT ME!
    */
-  public void setAddressSet(Set<Address> addressSet) {
-    this.addressSet = addressSet;
+  public void setDefaultAddress(Boolean defaultAddress) {
+    this.defaultAddress = defaultAddress;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -124,26 +118,4 @@ import org.hibernate.annotations.CascadeType;
   public void setId(Long id) {
     this.id = id;
   }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param  name  DOCUMENT ME!
-   */
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param  passWord  DOCUMENT ME!
-   */
-  public void setPassWord(String passWord) {
-    this.passWord = passWord;
-  }
-} // end class User
+} // end class Address
