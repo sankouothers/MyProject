@@ -50,8 +50,12 @@ import org.wang.restmall.repository.UserRepository;
     return userRepository.findOne(id);
   }
 
-  @Override
-  public User saveUser(User user) {
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.restmall.service.UserService#saveUser(org.wang.restmall.model.User)
+   */
+  @Override public User saveUser(User user) {
     return userRepository.save(user);
   }
 

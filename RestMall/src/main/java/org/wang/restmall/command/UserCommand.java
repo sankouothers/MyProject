@@ -115,14 +115,13 @@ public class UserCommand {
   /**
    * DOCUMENT ME!
    *
-   * @param   userCommand  DOCUMENT ME!
-   *
    * @return  DOCUMENT ME!
    */
-  public User toUser(UserCommand userCommand) {
+  public User toUser() {
     User user = new User();
-    user.setName(userCommand.getName());
-    user.setPassWord(userCommand.getPassWord());
+    user.setId(this.id);
+    user.setName(this.name);
+    user.setPassWord(this.passWord);
 
     return user;
   }
