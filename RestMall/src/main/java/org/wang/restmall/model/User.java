@@ -4,11 +4,13 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.Cascade;
@@ -21,7 +23,7 @@ import org.hibernate.annotations.CascadeType;
  * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
  * @version  $Revision$, $Date$
  */
-@Entity public class User {
+@Entity public class User extends BaseModel {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
   @Cascade({ CascadeType.SAVE_UPDATE })
@@ -58,6 +60,29 @@ import org.hibernate.annotations.CascadeType;
     nullable = false
   )
   private String passWord;
+
+  @Cascade({ CascadeType.SAVE_UPDATE })
+  @JoinTable(
+    name               = "UserRole", // 中间表名
+    joinColumns        = {
+      // 设置自己在中间表的对应外键
+      @JoinColumn(
+        name           = "userId",
+        nullable       = false,
+        updatable      = false
+      )
+    },
+    inverseJoinColumns = {
+      // 设置对方在中间表的对应外键
+      @JoinColumn(
+        name           = "roleId",
+        nullable       = false,
+        updatable      = false
+      )
+    }
+  )
+  @ManyToMany(fetch = FetchType.EAGER)
+  private Set<Role> roleSet;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -108,6 +133,17 @@ import org.hibernate.annotations.CascadeType;
   /**
    * DOCUMENT ME!
    *
+   * @return  DOCUMENT ME!
+   */
+  public Set<Role> getRoleSet() {
+    return roleSet;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @param  addressSet  DOCUMENT ME!
    */
   public void setAddressSet(Set<Address> addressSet) {
@@ -145,5 +181,16 @@ import org.hibernate.annotations.CascadeType;
    */
   public void setPassWord(String passWord) {
     this.passWord = passWord;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param  roleSet  DOCUMENT ME!
+   */
+  public void setRoleSet(Set<Role> roleSet) {
+    this.roleSet = roleSet;
   }
 } // end class User

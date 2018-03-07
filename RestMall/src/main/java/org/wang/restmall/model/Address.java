@@ -15,7 +15,7 @@ import javax.persistence.ManyToOne;
  * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
  * @version  $Revision$, $Date$
  */
-@Entity public class Address {
+@Entity public class Address extends BaseModel {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
   @Column(
