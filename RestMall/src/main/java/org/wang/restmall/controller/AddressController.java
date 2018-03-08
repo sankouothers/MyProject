@@ -63,7 +63,6 @@ import io.swagger.annotations.ApiOperation;
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
-
   /**
    * DOCUMENT ME!
    *
@@ -85,6 +84,26 @@ import io.swagger.annotations.ApiOperation;
     }
 
     return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   id  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @RequestMapping(
+    value  = "/address/{id}",
+    method = RequestMethod.GET
+  )
+  public ResponseEntity<AddressCommand> getAddress(Long id) {
+    Address        address        = addressService.findOne(id);
+    AddressCommand addressCommand = new AddressCommand(address);
+
+    return new ResponseEntity<AddressCommand>(addressCommand, HttpStatus.OK);
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
