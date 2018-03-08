@@ -63,6 +63,32 @@ import io.swagger.annotations.ApiOperation;
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   id  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @RequestMapping(
+    value  = "/address/{id}",
+    method = RequestMethod.DELETE
+  )
+  public ResponseEntity deleteAddress(Long id) {
+    Address address = addressService.findOne(id);
+
+    if (address != null) {
+      addressService.delete(address);
+
+      return new ResponseEntity(HttpStatus.OK);
+    }
+
+    return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
   /**
    * DOCUMENT ME!
    *

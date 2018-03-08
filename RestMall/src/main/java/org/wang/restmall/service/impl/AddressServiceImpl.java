@@ -28,6 +28,15 @@ import org.wang.restmall.service.AddressService;
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.restmall.service.AddressService#delete(org.wang.restmall.model.Address)
+   */
+  @Override public void delete(Address address) {
+    addressRepository.delete(address);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.restmall.service.AddressService#findByConsumerId(java.lang.Long)
    */
   @Override public Set<Address> findByConsumerId(Long consumerId) {

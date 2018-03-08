@@ -18,6 +18,15 @@ public interface AddressService {
   /**
    * DOCUMENT ME!
    *
+   * @param  address  DOCUMENT ME!
+   */
+  void delete(Address address);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @param   consumerId  DOCUMENT ME!
    *
    * @return  DOCUMENT ME!
