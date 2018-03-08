@@ -2,14 +2,12 @@ package org.wang.restmall.command;
 
 import java.util.Date;
 
-import io.swagger.annotations.ApiParam;
 import org.wang.restmall.model.Address;
 import org.wang.restmall.model.User;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-
-import javax.validation.constraints.Past;
+import io.swagger.annotations.ApiParam;
 
 
 /**
@@ -26,11 +24,14 @@ public class AddressCommand {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
   @ApiModelProperty(value = "地址")
-  private String  address;
+  private String address;
 
-  @ApiModelProperty(value = "地址所属的用户",hidden = true)
+  @ApiModelProperty(
+    value  = "地址所属的用户",
+    hidden = true
+  )
   @ApiParam(hidden = true)
-  private User    consumer;
+  private User consumer;
 
   @ApiModelProperty(value = "创建时间")
   private Date    createDate;
@@ -185,11 +186,13 @@ public class AddressCommand {
   public Address toAddress() {
     Address address = new Address();
     address.setAddress(this.address);
-    if(this.userId != null){
+
+    if (this.userId != null) {
       User user = new User();
       user.setId(this.userId);
-     address.setConsumer(user);
+      address.setConsumer(user);
     }
+
     address.setDefaultAddress(this.defaultAddress);
     address.setId(this.id);
     address.setCreateDate(this.createDate);
