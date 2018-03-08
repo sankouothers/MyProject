@@ -1,8 +1,10 @@
 package org.wang.restmall.repository;
 
+import java.util.Set;
+
 import org.springframework.data.repository.CrudRepository;
+
 import org.wang.restmall.model.Address;
-import org.wang.restmall.model.User;
 
 
 /**
@@ -13,5 +15,14 @@ import org.wang.restmall.model.User;
  */
 public interface AddressRepository extends CrudRepository<Address, Long> {
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   consumerId  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  Set<Address> findByConsumerId(Long consumerId);
 
 }

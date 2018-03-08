@@ -1,5 +1,7 @@
 package org.wang.restmall.service.impl;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -26,9 +28,27 @@ import org.wang.restmall.service.AddressService;
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.restmall.service.AddressService#findByConsumerId(java.lang.Long)
+   */
+  @Override public Set<Address> findByConsumerId(Long consumerId) {
+    return addressRepository.findByConsumerId(consumerId);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.restmall.service.AddressService#findOne(java.lang.Long)
+   */
+  @Override public Address findOne(Long id) {
+    return addressRepository.findOne(id);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.restmall.service.AddressService#saveAddress(org.wang.restmall.model.Address)
    */
   @Override public void saveAddress(Address address) {
     addressRepository.save(address);
   }
-}
+} // end class AddressServiceImpl

@@ -44,6 +44,29 @@ public class AddressCommand {
   @ApiModelProperty(value = "地址所属的用户 ID")
   private Long userId;
 
+  //~ Constructors -----------------------------------------------------------------------------------------------------
+
+  /**
+   * Creates a new AddressCommand object.
+   */
+  public AddressCommand() { }
+
+  /**
+   * Creates a new AddressCommand object.
+   *
+   * @param  address  DOCUMENT ME!
+   */
+  public AddressCommand(Address address) {
+    this.id = address.getId();
+
+    if (address.getConsumer() != null) {
+      this.userId = address.getConsumer().getId();
+    }
+
+    this.createDate     = address.getCreateDate();
+    this.defaultAddress = address.getDefaultAddress();
+  }
+
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
@@ -196,6 +219,22 @@ public class AddressCommand {
     address.setDefaultAddress(this.defaultAddress);
     address.setId(this.id);
     address.setCreateDate(this.createDate);
+
+    return address;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   address  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public Address updateAddress(Address address) {
+    address.setDefaultAddress(this.defaultAddress);
+    address.setAddress(this.address);
 
     return address;
   }

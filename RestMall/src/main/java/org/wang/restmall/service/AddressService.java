@@ -1,6 +1,8 @@
 package org.wang.restmall.service;
 
 
+import java.util.Set;
+
 import org.wang.restmall.model.Address;
 
 
@@ -16,7 +18,29 @@ public interface AddressService {
   /**
    * DOCUMENT ME!
    *
+   * @param   consumerId  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  Set<Address> findByConsumerId(Long consumerId);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   id  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  Address findOne(Long id);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @param  address  DOCUMENT ME!
    */
   void saveAddress(Address address);
-}
+} // end interface AddressService

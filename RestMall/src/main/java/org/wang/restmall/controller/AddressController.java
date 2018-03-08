@@ -1,5 +1,7 @@
 package org.wang.restmall.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
@@ -52,6 +54,40 @@ import io.swagger.annotations.ApiOperation;
     if (addressCommand != null) {
       Address address = addressCommand.toAddress();
       addressService.saveAddress(address);
+
+      return new ResponseEntity(HttpStatus.OK);
+    }
+
+    return new ResponseEntity(HttpStatus.EXPECTATION_FAILED);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   addressCommand  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @RequestMapping(
+    value  = "/address",
+    method = RequestMethod.PATCH
+  )
+  public ResponseEntity updateAddress(AddressCommand addressCommand) {
+    if (addressCommand != null) {
+      Address address = addressService.findOne(addressCommand.getId());
+
+      if (addressCommand.getDefaultAddress()) {
+        Set<Address> addressSet = addressService.findByConsumerId(address.getConsumer().getId());
+
+        for (Address otherAddress : addressSet) {
+          otherAddress.setDefaultAddress(false);
+          addressService.saveAddress(otherAddress);
+        }
+      }
+
+      addressService.saveAddress(addressCommand.updateAddress(address));
 
       return new ResponseEntity(HttpStatus.OK);
     }
