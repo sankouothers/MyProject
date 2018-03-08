@@ -1,9 +1,15 @@
 package org.wang.restmall.command;
 
+import java.util.Date;
+
+import io.swagger.annotations.ApiParam;
+import org.wang.restmall.model.Address;
 import org.wang.restmall.model.User;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+
+import javax.validation.constraints.Past;
 
 
 /**
@@ -21,13 +27,21 @@ public class AddressCommand {
 
   @ApiModelProperty(value = "地址")
   private String  address;
-  @ApiModelProperty(value = "地址所属的用户")
+
+  @ApiModelProperty(value = "地址所属的用户",hidden = true)
+  @ApiParam(hidden = true)
   private User    consumer;
+
+  @ApiModelProperty(value = "创建时间")
+  private Date    createDate;
   @ApiModelProperty(value = "是否为默认地址")
   private Boolean defaultAddress;
 
   @ApiModelProperty(value = "ID")
   private Long id;
+
+  @ApiModelProperty(value = "地址所属的用户 ID")
+  private Long userId;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -58,6 +72,17 @@ public class AddressCommand {
    *
    * @return  DOCUMENT ME!
    */
+  public Date getCreateDate() {
+    return createDate;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
   public Boolean getDefaultAddress() {
     return defaultAddress;
   }
@@ -71,6 +96,17 @@ public class AddressCommand {
    */
   public Long getId() {
     return id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public Long getUserId() {
+    return userId;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -100,6 +136,17 @@ public class AddressCommand {
   /**
    * DOCUMENT ME!
    *
+   * @param  createDate  DOCUMENT ME!
+   */
+  public void setCreateDate(Date createDate) {
+    this.createDate = createDate;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @param  defaultAddress  DOCUMENT ME!
    */
   public void setDefaultAddress(Boolean defaultAddress) {
@@ -115,5 +162,38 @@ public class AddressCommand {
    */
   public void setId(Long id) {
     this.id = id;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param  userId  DOCUMENT ME!
+   */
+  public void setUserId(Long userId) {
+    this.userId = userId;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public Address toAddress() {
+    Address address = new Address();
+    address.setAddress(this.address);
+    if(this.userId != null){
+      User user = new User();
+      user.setId(this.userId);
+     address.setConsumer(user);
+    }
+    address.setDefaultAddress(this.defaultAddress);
+    address.setId(this.id);
+    address.setCreateDate(this.createDate);
+
+    return address;
   }
 } // end class AddressCommand
