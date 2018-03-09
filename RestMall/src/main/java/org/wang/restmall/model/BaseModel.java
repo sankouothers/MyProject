@@ -14,7 +14,11 @@ import javax.persistence.Column;
 public class BaseModel {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  @Column private Date createDate;
+  @Column(
+    nullable  = false,
+    updatable = false
+  )
+  private Date createDate;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
