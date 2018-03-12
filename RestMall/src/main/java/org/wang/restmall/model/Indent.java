@@ -1,6 +1,7 @@
 package org.wang.restmall.model;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.ManyToOne;
  * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
  * @version  $Revision$, $Date$
  */
+@Entity
 public class Indent extends BaseModel {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
