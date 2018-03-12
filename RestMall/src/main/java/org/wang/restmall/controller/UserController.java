@@ -2,6 +2,7 @@ package org.wang.restmall.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -15,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import org.wang.restmall.command.AddressCommand;
 import org.wang.restmall.command.UserCommand;
+import org.wang.restmall.model.Address;
 import org.wang.restmall.model.User;
+import org.wang.restmall.service.AddressService;
 import org.wang.restmall.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -35,9 +39,40 @@ import io.swagger.annotations.ApiParam;
 @RestController public class UserController {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
+  @Autowired private AddressService addressService;
+
   @Autowired private UserService userService;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   consumerId  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @RequestMapping(
+    value  = "/user/{consumerId}/address",
+    method = RequestMethod.GET
+  )
+  public ResponseEntity<List<AddressCommand>> addressList(@PathVariable Long consumerId) {
+    Set<Address>         addressSet  = addressService.findByConsumerId(consumerId);
+    List<AddressCommand> addressList = new ArrayList<>();
+
+    if (addressSet != null) {
+      for (Address address : addressSet) {
+        addressList.add(new AddressCommand(address));
+      }
+
+      return new ResponseEntity<List<AddressCommand>>(addressList, HttpStatus.OK);
+    }
+
+    return new ResponseEntity<List<AddressCommand>>(addressList, HttpStatus.FAILED_DEPENDENCY);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * DOCUMENT ME!
@@ -73,6 +108,38 @@ import io.swagger.annotations.ApiParam;
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   id  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  @ApiOperation(
+    value = "删除用户",
+    notes = "删除用户"
+  )
+  @RequestMapping(
+    value  = "/user/{id}",
+    method = RequestMethod.DELETE
+  )
+  public ResponseEntity deleteUser(@ApiParam(
+      value    = "用户Id",
+      required = true
+    )
+    @PathVariable Long id) {
+    User user = userService.findOne(id);
+
+    if (user != null) {
+      userService.delete(user);
+
+      return new ResponseEntity(HttpStatus.OK);
+    }
+
+    return new ResponseEntity(HttpStatus.FAILED_DEPENDENCY);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * DOCUMENT ME!

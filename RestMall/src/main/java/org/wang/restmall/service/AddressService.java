@@ -1,8 +1,9 @@
 package org.wang.restmall.service;
 
-import java.util.List;
 
-import org.wang.restmall.model.User;
+import java.util.Set;
+
+import org.wang.restmall.model.Address;
 
 
 /**
@@ -11,35 +12,26 @@ import org.wang.restmall.model.User;
  * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
  * @version  $Revision$, $Date$
  */
-public interface UserService {
+public interface AddressService {
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
   /**
    * DOCUMENT ME!
    *
-   * @param  user  DOCUMENT ME!
+   * @param  address  DOCUMENT ME!
    */
-  void delete(User user);
+  void delete(Address address);
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * DOCUMENT ME!
    *
-   * @return  DOCUMENT ME!
-   */
-  List<User> findAll();
-
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param   name  DOCUMENT ME!
+   * @param   consumerId  DOCUMENT ME!
    *
    * @return  DOCUMENT ME!
    */
-  User findByName(String name);
+  Set<Address> findByConsumerId(Long consumerId);
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
@@ -50,16 +42,14 @@ public interface UserService {
    *
    * @return  DOCUMENT ME!
    */
-  User findOne(Long id);
+  Address findOne(Long id);
 
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * DOCUMENT ME!
    *
-   * @param   user  DOCUMENT ME!
-   *
-   * @return  DOCUMENT ME!
+   * @param  address  DOCUMENT ME!
    */
-  User saveUser(User user);
-} // end interface UserService
+  void saveAddress(Address address);
+} // end interface AddressService

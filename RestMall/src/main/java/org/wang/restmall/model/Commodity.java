@@ -1,20 +1,12 @@
 package org.wang.restmall.model;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
-
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.CascadeType;
+import javax.persistence.ManyToOne;
 
 
 /**
@@ -23,66 +15,40 @@ import org.hibernate.annotations.CascadeType;
  * @author   <a href="mailto:pin.wang@ozstrategy.com">Pin Wang</a>
  * @version  $Revision$, $Date$
  */
-@Entity public class User extends BaseModel {
+@Entity
+public class Commodity extends BaseModel {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  @Cascade({ CascadeType.SAVE_UPDATE })
-  @JoinTable(
-    name               = "UserAddress",
-    joinColumns        = {
-      @JoinColumn(
-        name           = "userId",
-        nullable       = false,
-        updatable      = false
-      )
-    },
-    inverseJoinColumns = {
-      @JoinColumn(
-        name           = "addressId",
-        nullable       = false,
-        updatable      = false
-      )
-    }
-  )
-  @OneToMany private Set<Address> addressSet;
+  @Column(length = 50)
+// 品牌
+  private String brand;
+  @Column(length = 50)
+  // 分类
+  private String category;
 
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @JoinColumn(name = "creatorId")
+  @ManyToOne
+// 商品属于谁
+  private User                   creator;
+
+  @Column(length = 50)
+// 使用环境
+  private String   effect;
+  @GeneratedValue(strategy = GenerationType.AUTO)
   @Id private Long id;
-
   @Column(
     length   = 12,
     nullable = false
   )
-  private String name;
+// 商品名称
+  private String   name;
 
   @Column(
-    length   = 16,
-    nullable = false
+    nullable = false,
+    updatable = false
   )
-  private String passWord;
-
-  @Cascade({ CascadeType.SAVE_UPDATE })
-  @JoinTable(
-    name               = "UserRole", // 中间表名
-    joinColumns        = {
-      // 设置自己在中间表的对应外键
-      @JoinColumn(
-        name           = "userId",
-        nullable       = false,
-        updatable      = false
-      )
-    },
-    inverseJoinColumns = {
-      // 设置对方在中间表的对应外键
-      @JoinColumn(
-        name           = "roleId",
-        nullable       = false,
-        updatable      = false
-      )
-    }
-  )
-  @ManyToMany(fetch = FetchType.EAGER)
-  private Set<Role> roleSet;
+// 单价
+  private Long price;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
@@ -91,8 +57,41 @@ import org.hibernate.annotations.CascadeType;
    *
    * @return  DOCUMENT ME!
    */
-  public Set<Address> getAddressSet() {
-    return addressSet;
+  public String getBrand() {
+    return brand;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public String getCategory() {
+    return category;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public User getCreator() {
+    return creator;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  public String getEffect() {
+    return effect;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -124,8 +123,8 @@ import org.hibernate.annotations.CascadeType;
    *
    * @return  DOCUMENT ME!
    */
-  public String getPassWord() {
-    return passWord;
+  public Long getPrice() {
+    return price;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -133,10 +132,10 @@ import org.hibernate.annotations.CascadeType;
   /**
    * DOCUMENT ME!
    *
-   * @return  DOCUMENT ME!
+   * @param  brand  DOCUMENT ME!
    */
-  public Set<Role> getRoleSet() {
-    return roleSet;
+  public void setBrand(String brand) {
+    this.brand = brand;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -144,10 +143,32 @@ import org.hibernate.annotations.CascadeType;
   /**
    * DOCUMENT ME!
    *
-   * @param  addressSet  DOCUMENT ME!
+   * @param  category  DOCUMENT ME!
    */
-  public void setAddressSet(Set<Address> addressSet) {
-    this.addressSet = addressSet;
+  public void setCategory(String category) {
+    this.category = category;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param  creator  DOCUMENT ME!
+   */
+  public void setCreator(User creator) {
+    this.creator = creator;
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param  effect  DOCUMENT ME!
+   */
+  public void setEffect(String effect) {
+    this.effect = effect;
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
@@ -177,20 +198,10 @@ import org.hibernate.annotations.CascadeType;
   /**
    * DOCUMENT ME!
    *
-   * @param  passWord  DOCUMENT ME!
+   * @param  price  DOCUMENT ME!
    */
-  public void setPassWord(String passWord) {
-    this.passWord = passWord;
+  public void setPrice(Long price) {
+    this.price = price;
   }
 
-  //~ ------------------------------------------------------------------------------------------------------------------
-
-  /**
-   * DOCUMENT ME!
-   *
-   * @param  roleSet  DOCUMENT ME!
-   */
-  public void setRoleSet(Set<Role> roleSet) {
-    this.roleSet = roleSet;
-  }
-} // end class User
+} // end class Commodity

@@ -1,4 +1,4 @@
-package org.wang.restmall.service;
+package org.wang.restmall.service.impl;
 
 import java.util.List;
 
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import org.wang.restmall.model.User;
 import org.wang.restmall.repository.UserRepository;
+import org.wang.restmall.service.UserService;
 
 
 /**
@@ -24,6 +25,15 @@ import org.wang.restmall.repository.UserRepository;
   @Autowired private UserRepository userRepository;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.restmall.service.UserService#delete(org.wang.restmall.model.User)
+   */
+  @Override public void delete(User user) {
+    userRepository.delete(user);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
    * @see  org.wang.restmall.service.UserService#findAll()

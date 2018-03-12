@@ -9,6 +9,7 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 
 import springfox.documentation.service.ApiInfo;
 
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 
 import springfox.documentation.spring.web.plugins.Docket;
@@ -71,7 +72,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
       .title("Mall API")                // 设置文档的标题
       .description("REST Mall API")     // 设置文档的描述
       .version("1.0")                   // 设置文档的版本信息
-      .contact("http://www.wang.com")   // 设置作者 creator
+      .contact(new Contact("Pin Wang","http://www.wang.com","873275512@qq.com"))   // 设置作者 creator
       .termsOfServiceUrl("www.pin.com") // 设置文档的License信息
       .build();
   }
