@@ -17,10 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import org.wang.restmall.command.AddressCommand;
+import org.wang.restmall.command.CommodityCommand;
 import org.wang.restmall.command.UserCommand;
 import org.wang.restmall.model.Address;
+import org.wang.restmall.model.Commodity;
 import org.wang.restmall.model.User;
 import org.wang.restmall.service.AddressService;
+import org.wang.restmall.service.CommodityService;
 import org.wang.restmall.service.UserService;
 
 import io.swagger.annotations.Api;
@@ -39,7 +42,8 @@ import io.swagger.annotations.ApiParam;
 @RestController public class UserController {
   //~ Instance fields --------------------------------------------------------------------------------------------------
 
-  @Autowired private AddressService addressService;
+  @Autowired private AddressService   addressService;
+  @Autowired private CommodityService commodityService;
 
   @Autowired private UserService userService;
 
@@ -76,7 +80,35 @@ import io.swagger.annotations.ApiParam;
   /**
    * DOCUMENT ME!
    *
-   * @param   userCommand   表单提交的 user 信息
+   * @param   creatorId  商品从属的 Id
+   *
+   * @return  该用户的所有商品
+   */
+  @RequestMapping(
+    value  = "/user/{creatorId}/commodity",
+    method = RequestMethod.GET
+  )
+  public ResponseEntity<List<CommodityCommand>> commodityList(@PathVariable Long creatorId) {
+    Set<Commodity>         commoditySet  = commodityService.findByCreatorId(creatorId);
+    List<CommodityCommand> commodityList = new ArrayList<>();
+
+    if (commoditySet != null) {
+      for (Commodity commodity : commoditySet) {
+        commodityList.add(new CommodityCommand(commodity));
+      }
+
+      return new ResponseEntity<List<CommodityCommand>>(commodityList, HttpStatus.OK);
+    }
+
+    return new ResponseEntity<List<CommodityCommand>>(HttpStatus.FAILED_DEPENDENCY);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
+   * @param   userCommand  表单提交的 user 信息
    *
    * @return  Http 状态码
    */

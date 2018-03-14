@@ -1,6 +1,8 @@
 package org.wang.restmall.service;
 
 
+import java.util.Set;
+
 import org.wang.restmall.model.Commodity;
 
 
@@ -25,6 +27,17 @@ public interface CommodityService {
   /**
    * DOCUMENT ME!
    *
+   * @param   creatorId  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  Set<Commodity> findByCreatorId(Long creatorId);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @param   id  DOCUMENT ME!
    *
    * @return  DOCUMENT ME!
@@ -39,5 +52,4 @@ public interface CommodityService {
    * @param  commodity  DOCUMENT ME!
    */
   void save(Commodity commodity);
-
 } // end interface CommodityService

@@ -1,5 +1,7 @@
 package org.wang.restmall.service.impl;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;
@@ -30,6 +32,15 @@ import org.wang.restmall.service.CommodityService;
    */
   @Override public void delete(Commodity commodity) {
     commodityRepository.delete(commodity);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * @see  org.wang.restmall.service.CommodityService#findByCreatorId(java.lang.Long)
+   */
+  @Override public Set<Commodity> findByCreatorId(Long creatorId) {
+    return commodityRepository.findByCreatorId(creatorId);
   }
 
   //~ ------------------------------------------------------------------------------------------------------------------
