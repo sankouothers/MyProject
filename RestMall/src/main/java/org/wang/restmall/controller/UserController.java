@@ -45,13 +45,12 @@ import io.swagger.annotations.ApiParam;
 
   //~ Methods ----------------------------------------------------------------------------------------------------------
 
-
   /**
    * DOCUMENT ME!
    *
-   * @param   consumerId  DOCUMENT ME!
+   * @param   consumerId  用户Id
    *
-   * @return  DOCUMENT ME!
+   * @return  该用户的所有地址信息 + Http 状态码
    */
   @RequestMapping(
     value  = "/user/{consumerId}/address",
@@ -77,9 +76,9 @@ import io.swagger.annotations.ApiParam;
   /**
    * DOCUMENT ME!
    *
-   * @param   userCommand  DOCUMENT ME!
+   * @param   userCommand   表单提交的 user 信息
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @ApiOperation(
     value = "创建一个新的 User",
@@ -111,9 +110,9 @@ import io.swagger.annotations.ApiParam;
   /**
    * DOCUMENT ME!
    *
-   * @param   id  DOCUMENT ME!
+   * @param   id  user 的 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @ApiOperation(
     value = "删除用户",
@@ -144,9 +143,9 @@ import io.swagger.annotations.ApiParam;
   /**
    * DOCUMENT ME!
    *
-   * @param   userCommand  DOCUMENT ME!
+   * @param   userCommand  表单提交的 user 信息
    *
-   * @return  DOCUMENT ME!
+   * @return  user 信息 + Http 状态码
    */
   @ApiOperation(
     value = "修改 User信息",
@@ -174,9 +173,9 @@ import io.swagger.annotations.ApiParam;
    * DOCUMENT ME!
    *
    * @param   request  DOCUMENT ME!
-   * @param   id       DOCUMENT ME!
+   * @param   id       用户 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  user 信息 + Http 状态码
    */
 
   // @ApiOperation：用在方法上，说明方法的作用
@@ -207,7 +206,7 @@ import io.swagger.annotations.ApiParam;
    *
    * @param   request  DOCUMENT ME!
    *
-   * @return  DOCUMENT ME!
+   * @return  所有的 user
    */
   @ApiOperation(
     value = "获取所有用户",

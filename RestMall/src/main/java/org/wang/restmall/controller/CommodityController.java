@@ -31,9 +31,9 @@ import org.wang.restmall.service.CommodityService;
   /**
    * DOCUMENT ME!
    *
-   * @param   commodityCommand  DOCUMENT ME!
+   * @param   commodityCommand  表单提交的 commodity 信息
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/commodity",
@@ -55,9 +55,9 @@ import org.wang.restmall.service.CommodityService;
   /**
    * DOCUMENT ME!
    *
-   * @param   id  DOCUMENT ME!
+   * @param   id  commodity 的 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/commodity/{id}",
@@ -80,9 +80,9 @@ import org.wang.restmall.service.CommodityService;
   /**
    * DOCUMENT ME!
    *
-   * @param   id  DOCUMENT ME!
+   * @param   id  commodity 的 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  commodity 信息 + Http 状态码
    */
   @RequestMapping(
     value  = "/commodity/{id}",
@@ -100,9 +100,9 @@ import org.wang.restmall.service.CommodityService;
   /**
    * DOCUMENT ME!
    *
-   * @param   commodityCommand  DOCUMENT ME!
+   * @param   commodityCommand  表单提交的 commodity 信息
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/commodity",

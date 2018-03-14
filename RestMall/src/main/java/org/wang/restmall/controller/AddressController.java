@@ -38,9 +38,9 @@ import io.swagger.annotations.ApiOperation;
   /**
    * DOCUMENT ME!
    *
-   * @param   addressCommand  DOCUMENT ME!
+   * @param   addressCommand  表单提交的 address 信息
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @ApiOperation(
     value = "创建一个新的 address",
@@ -66,9 +66,9 @@ import io.swagger.annotations.ApiOperation;
   /**
    * DOCUMENT ME!
    *
-   * @param   id  DOCUMENT ME!
+   * @param   id  address 的 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/address/{id}",
@@ -91,9 +91,9 @@ import io.swagger.annotations.ApiOperation;
   /**
    * DOCUMENT ME!
    *
-   * @param   id  DOCUMENT ME!
+   * @param   id  Address 的 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  address 信息 + Http 状态码
    */
   @RequestMapping(
     value  = "/address/{id}",
@@ -111,9 +111,9 @@ import io.swagger.annotations.ApiOperation;
   /**
    * DOCUMENT ME!
    *
-   * @param   addressCommand  DOCUMENT ME!
+   * @param   addressCommand  表单提交的 address 信息
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/address",

@@ -31,9 +31,9 @@ import org.wang.restmall.service.IndentService;
   /**
    * DOCUMENT ME!
    *
-   * @param   indentCommand  DOCUMENT ME!
+   * @param   indentCommand  表单提交的 indent 信息
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/indent",
@@ -55,9 +55,9 @@ import org.wang.restmall.service.IndentService;
   /**
    * DOCUMENT ME!
    *
-   * @param   id  DOCUMENT ME!
+   * @param   id   indent 的 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/indent/{id}",
@@ -80,9 +80,9 @@ import org.wang.restmall.service.IndentService;
   /**
    * DOCUMENT ME!
    *
-   * @param   id  DOCUMENT ME!
+   * @param   id   Indent 的 Id
    *
-   * @return  DOCUMENT ME!
+   * @return  Indent 的信息 + Http 状态码
    */
   @RequestMapping(
     value  = "/indent/{id}",
@@ -100,9 +100,9 @@ import org.wang.restmall.service.IndentService;
   /**
    * DOCUMENT ME!
    *
-   * @param   indentCommand  DOCUMENT ME!
+   * @param   indentCommand  Indent
    *
-   * @return  DOCUMENT ME!
+   * @return  Http 状态码
    */
   @RequestMapping(
     value  = "/indent",
