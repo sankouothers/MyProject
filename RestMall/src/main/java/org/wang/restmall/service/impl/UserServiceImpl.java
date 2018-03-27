@@ -54,6 +54,15 @@ import org.wang.restmall.service.UserService;
   //~ ------------------------------------------------------------------------------------------------------------------
 
   /**
+   * @see  org.wang.restmall.service.UserService#findByNameAndPassWord(java.lang.String, java.lang.String)
+   */
+  @Override public User findByNameAndPassWord(String name, String passWord) {
+    return userRepository.findByNameAndPassWord(name, passWord);
+  }
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
    * @see  org.wang.restmall.service.UserService#findOne(java.lang.Long)
    */
   @Override public User findOne(Long id) {

@@ -46,6 +46,18 @@ public interface UserService {
   /**
    * DOCUMENT ME!
    *
+   * @param   name      DOCUMENT ME!
+   * @param   passWord  DOCUMENT ME!
+   *
+   * @return  DOCUMENT ME!
+   */
+  User findByNameAndPassWord(String name, String passWord);
+
+  //~ ------------------------------------------------------------------------------------------------------------------
+
+  /**
+   * DOCUMENT ME!
+   *
    * @param   id  DOCUMENT ME!
    *
    * @return  DOCUMENT ME!
